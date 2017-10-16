@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 # Create a class that will give us an object that we can use to connect to a database
 class MySQLConnection(object):
-    def __init__(self, app, reddit):
+    def __init__(self, app, db):
         config = {
                 'host': 'localhost',
-                'database': reddit, # we got db as an argument
+                'database': db, # we got db as an argument
                 'user': 'root',
                 'password': 'root',
                 'port': '3306' # change the port to match the port your SQL server is running on
@@ -16,10 +16,10 @@ class MySQLConnection(object):
         app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
         # establish the connection to database
-        self.reddit = SQLAlchemy(app)
+        self.db = SQLAlchemy(app)
     # this is the method we will use to query the database
     def query_db(self, query, data=None):
-        result = self.reddit.session.execute(text(query), data)
+        result = self.db.session.execute(text(query), data)
         if query[0:6].lower() == 'select':
             # if the query was a select
             # convert the result to a list of dictionaries
@@ -29,12 +29,12 @@ class MySQLConnection(object):
         elif query[0:6].lower() == 'insert':
             # if the query was an insert, return the id of the
             # commit changes
-            self.reddit.session.commit()
+            self.db.session.commit()
             # row that was inserted
             return result.lastrowid
         else:
             # if the query was an update or delete, return nothing and commit changes
-            self.reddit.session.commit()
+            self.db.session.commit()
 # This is the module method to be called by the user in server.py. Make sure to provide the db name!
-def MySQLConnector(app, reddit):
-    return MySQLConnection(app, reddit)
+def MySQLConnector(app, db):
+    return MySQLConnection(app, db)

@@ -1,6 +1,5 @@
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css')}}">
     <title>Reddit</title>
     </head>
     <body>
@@ -13,16 +12,16 @@
                             <a href="/subreddits">EDIT SUBSCRIPTIONS</a>
                         </div>
                     </div>
-                     
+
                     <script>
-                         /* When the user clicks on the button, 
+                         /* When the user clicks on the button,
                          toggle between hiding and showing the dropdown content */
                          function myFunction() {
                              document.getElementById("myDropdown").classList.toggle("show");
-                         
+
                          // Close the dropdown if the user clicks outside of i                                window.onclick = function(event) {
                             if (!event.target.matches('.dropbtn')) {
-                         
+
                                 var dropdowns = document.getElementsByClassName("dropdown-content");
                                 var i;
                                 for (i = 0; i < dropdowns.length; i++) {
@@ -34,7 +33,7 @@
                             }
                          }
                     </script>
-                     
+
                     <div class="sidelist">
                         <form action='/' method='POST'>
                             <a href="/popular">POPULAR</a>
@@ -62,10 +61,9 @@
                             <a href="/jokes">JOKES</a>
                             <span class="separator">-</span>
                             <a href="/subreddits">more >></a>
-                        </form>    
-                    </div>    
+                        </form>
+                    </div>
                 </div>
-
 
 
 
@@ -82,7 +80,7 @@
                         <li><a href="/" class="choice">wiki</a></li>
                         </ul>
                     </div>
-                    <div><p>What to join? <a href="">Log in</a> or <a href="">sign up</a> in seconds. | English</p></div>
+                    <div><p><a href="http://localhost:5000/logout">Log out</a></p></div>
                 </div>
 
 
@@ -147,112 +145,11 @@
                             <input type="submit" name="Submit">
                         </form>
                     </div>
-                    <div name="login">
-                      {% with messages = get_flashed_messages(category_filter=["login"]) %}
-                        {% if messages %}
-                          {% for message in messages %}
-                            <p>{{message}}</p>
-                          {% endfor %}
-                        {% endif %}
-                      {% endwith %}
-                      <form action="/login" method="post">
-                        <p>Username:<input type="text" name="username" id="username"></p>
-                        <p>Password:<input type="text" name="password" id="password"></p>
-                        <p><input type="submit" value="Login"></p>
-                      </form>
-                    </div>
-                    <div id="rememberme">
-                        <!--  AD plans on adding functionality for this button -->
-                        <input type="checkbox" name="rememberme" id="rem">
-                        <label for='rem'>remember me</label>
-                        <a href="/reset"> reset password</a>
-                        <button class='btn' type="submit">login</button>
-                    </div>
 
             </div>
 
-            <!-- registrationform -->
-            <div>
-              <form action="/create" method="post">
-                <p>Username:<input type="text" name="username" id="username"></p>
-                <p>Password:<input type="text" name="password" id="password"></p>
-                <p>Password Confirmation:<input type="text" name="confirm_password" id="confirm_password"></p>
-                <p><input type="submit" value="Create Account"></p>
-              </form>
-            </div>
-            {% with messages = get_flashed_messages(category_filter=["registration"]) %}
-              {% if messages %}
-                {% for message in messages %}
-                  <p>{{message}}</p>
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
-
-            <div name="extra">
-               
-                <div class="firstimage">
-                    <img class="img1" src="https://d3c5s1hmka2e2b.cloudfront.net/uploads/topic/image/5/CD_Logo1.png" height="100" width="100">
-                </div>
-                <div class="sidebuttons">
-                    <div>
-                         <button onclick="myFunction()" class="sidebtn1">
-                            <a href="/submitlink">
-                                Submit a new link
-                            </a>
-                        </button>
-                    </div>
-                    <div>
-                        <button onclick="myFunction()" class="sidebtn2">
-                            <a href="/submittext">
-                                Submit a new text post
-                            </a>
-                        </button>
-                    </div>
-                </div>
-                <div class="secondimage">
-                    <img class="img2" src="http://s3.amazonaws.com/digitaltrends-uploads-prod/2016/11/Coding-Dojo-Cohort33.png" height="100" width="100">
-                </div>
-            
-            </div>
-
-
-            <div name="footer">
-                <div class="col">
-                    <ul>
-                        <li>about</li>
-                        <li><a href="/blog" class="choice">blog</a></li>
-                        <li><span class="separator"></span><a href="/about" class="choice">about</a></li>
-                        <li><span class="separator"></span><a href="advertise" class="choice">advertise</a></li>
-                        <li><span class="separator"></span><a href="careers" class="choice">careers</a></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul>
-                        <li>help</li>
-                        <li><a href="https://www.reddit.com/rules/" class="choice">rules</a></li>
-                        <li><span class="separator"></span><a href="/FAQ" class="choice">FAQ</a></li>
-                        <li><span class="separator"></span><a href="/wiki" class="choice">wiki</a></li>
-                        <li><span class="separator"></span><a href="/contact" class="choice">contact us</a></li>
-                    </ul>
-                </div>
-
-
-                <div class="col">
-                     <ul>
-                         <li>apps & tools</li>
-                         <li><a href="/reddit for iphone" class="choice">Reddit for iphone</a></li>
-                         <li><span class="separator"></span><a href="/Mobile website" class="choice">Mobile Website</a></li>
-                     </ul>
-                </div>
-
-                <div class="col">
-                    <ul>
-                        <li>reddit gold</li>
-                        <li>redditgifts</li>
-                    </ul>
-                </div>
-            </div>
+            <div name="extra"></div>
+            <div name="footer"></div>
         </div>
-
     </body>
 </html>
